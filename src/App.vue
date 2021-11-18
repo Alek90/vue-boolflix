@@ -3,9 +3,9 @@
     
     <div class="search">
 
-      <input type="text" placeholder="Titolo">
+      <input @keyup="createAPI()" v-model="titleRequired" type="text" placeholder="Titolo">
 
-      <button @click="callAPI">
+      <button @click="callAPI ()">
         Cerca
       </button>
 
@@ -28,8 +28,9 @@ export default {
 
       titleRequired: 'jurassic',
 
-      apiRequired: 'https://api.themoviedb.org/3/search/movie?api_key=3d29c9625fadd02d13b86c0f4b58f8b7&language=en-US&page=1&query=jurassic&include_adult=false'
+      baseApi: ['https://api.themoviedb.org/3/search/movie?api_key=3d29c9625fadd02d13b86c0f4b58f8b7&language=en-US&page=1&include_adult=false&query='],
 
+      apiRequired: ''
       /* la query all'interno del'API deve essere inserita tramite dollegamento con il v-model dell'input, così da determinare la richiesta completa di volta in volta. 
       Punto di partenza:
         -Come inserisco la stringa del v-model nella query?
@@ -39,6 +40,11 @@ export default {
   },
 
   methods:{
+
+    createAPI() {
+      this.apiRequired = this.baseApi + this.titleRequired;
+      console.log(this.apiRequired);
+    },
 
     callAPI () {
       axios.get(this.apiRequired)
