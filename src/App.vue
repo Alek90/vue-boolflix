@@ -1,18 +1,19 @@
 <template>
   <div id="app">
     
+    <MainSite />
 
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import MainSite from './components/MainSite.vue'
 
 
 export default {
   name: 'App',
   components: {
-
+    MainSite
   },
 
   data() {

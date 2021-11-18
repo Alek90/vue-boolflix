@@ -1,6 +1,7 @@
 <template>
     <main id="site_main">
-
+ 
+        <!-- componente di ricerca -->
         <div class="search">
 
             <input @keyup="createAPI(titleRequired)" v-model="titleRequired" type="text" placeholder="Titolo">
@@ -11,16 +12,18 @@
 
         </div>
 
+
+        <!-- contenuto principale del #site_main -->
         <div class="results_found">
 
-
+            <!-- film trovati -->
             <div class="films_found">
 
                 <h2>FILM</h2>
 
                 <div v-for="result in resultsFoundMovies" :key="result.id" class="film">
 
-                    <h2>{{result.title}}</h2>
+                    <h3>{{result.title}}</h3>
 
                     <p>{{result.original_title}}</p>
 
@@ -32,14 +35,14 @@
 
             </div>
 
-
+            <!-- serie tv trovate -->
             <div class="tv_found">
 
                 <h2>TELEFILM</h2>
 
                 <div v-for="result in resultsFoundTvShow" :key="result.id" class="tvshow">
 
-                    <h2>{{result.name}}</h2>
+                    <h3>{{result.name}}</h3>
 
                     <p>{{result.original_name}}</p>
 
@@ -58,6 +61,8 @@
 
 
 <script>
+import axios from 'axios'
+
 export default {
     name: 'MaineSite',
 
@@ -67,7 +72,7 @@ export default {
 
             titleRequired: '',
 
-            baseApiMovies: ['https://api.themoviedb.org/3/search/movie?api_key=3d29c9625fadd02d13b86c0f4b58f8b7&language=it-IT&page=1&include_adult=false&query='],
+            baseApiMovies: 'https://api.themoviedb.org/3/search/movie?api_key=3d29c9625fadd02d13b86c0f4b58f8b7&language=it-IT&page=1&include_adult=false&query=',
 
             apiRequiredMovies: '',
 
