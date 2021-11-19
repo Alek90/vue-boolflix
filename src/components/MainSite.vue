@@ -31,7 +31,7 @@
 
                     <img :src="flagUrl + result.original_language + '.png'" :alt="result.original_language">
 
-                    <p>{{result.vote_average}}</p>
+                    <p>{{Math.ceil(result.vote_average/2)}}</p>
 
                     <img :src="posterUrl + result.poster_path" alt="">
 
@@ -50,9 +50,9 @@
 
                     <p>{{result.original_name}}</p>
 
-                    <img :src="flagUrl + result.original_language + '.png'" :alt="result.original_language">
+                    <img :src="flagUrl + result.original_language + '/codes.json'" :alt="result.origin_language">
 
-                    <p>{{result.vote_average}}</p>
+                    <p>{{Math.ceil(result.vote_average/2)}}</p>
 
                     <img :src="posterUrl + result.poster_path" alt="">
 
@@ -124,6 +124,8 @@ export default {
       });
 
     },
+
+
 
   }
 
