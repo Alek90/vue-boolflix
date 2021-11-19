@@ -29,9 +29,7 @@
 
                     <p>{{result.original_title}}</p>
 
-                    <p>{{result.original_language}}</p>
-
-                    <!-- <img :src="'https://flagcdn.com/16x12/' + result.original_language + '.png'" :alt="result.original_language"> -->
+                    <img :src="flagUrl + result.original_language + '.png'" :alt="result.original_language">
 
                     <p>{{result.vote_average}}</p>
 
@@ -52,9 +50,7 @@
 
                     <p>{{result.original_name}}</p>
 
-                    <p>{{result.original_language}}</p>
-
-                    <!-- <img :src="'https://flagcdn.com/16x12/' + result.original_language + '.png'" :alt="result.original_language"> -->
+                    <img :src="flagUrl + result.original_language + '.png'" :alt="result.original_language">
 
                     <p>{{result.vote_average}}</p>
 
@@ -95,7 +91,9 @@ export default {
 
             resultsFoundTvShow: '',
 
-            posterUrl: 'https://image.tmdb.org/t/p/w342'
+            posterUrl: 'https://image.tmdb.org/t/p/w342',
+
+            flagUrl: 'https://flagcdn.com/16x12/'
 
         }
     },
