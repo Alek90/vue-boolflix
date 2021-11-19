@@ -19,6 +19,8 @@
             <!-- film trovati -->
             <div class="films_found">
 
+                <img src =" http://purecatamphetamine.github.io/country-flag-icons/3x2/EN.svg " alt="">
+
                 <h2>FILM</h2>
 
                 <div v-for="result in resultsFoundMovies" :key="result.id" class="film">
@@ -30,6 +32,8 @@
                     <p>{{result.original_language}}</p>
 
                     <p>{{result.vote_average}}</p>
+
+                    <div>{{result.backdrop_path}}</div>
 
                 </div>
 
@@ -61,7 +65,8 @@
 
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+//import  hasFlag  from  'country-flag-icons'
 
 export default {
     name: 'MaineSite',
@@ -82,7 +87,9 @@ export default {
 
             apiRequiredTvShow: '',
 
-            resultsFoundTvShow: ''
+            resultsFoundTvShow: '',
+
+            //hasFlag:''
         }
     },
 
