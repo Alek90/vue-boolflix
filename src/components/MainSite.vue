@@ -19,7 +19,7 @@
             <!-- film trovati -->
             <div class="films_found">
 
-                <img src =" http://purecatamphetamine.github.io/country-flag-icons/3x2/EN.svg " alt="">
+                
 
                 <h2>FILM</h2>
 
@@ -31,9 +31,9 @@
 
                     <p>{{result.original_language}}</p>
 
-                    <p>{{result.vote_average}}</p>
+                    <img :src="'https://flagcdn.com/16x12/' + result.original_language + '.png'" :alt="result.original_language">
 
-                    <div>{{result.backdrop_path}}</div>
+                    <p>{{result.vote_average}}</p>
 
                 </div>
 
@@ -89,7 +89,6 @@ export default {
 
             resultsFoundTvShow: '',
 
-            //hasFlag:''
         }
     },
 
