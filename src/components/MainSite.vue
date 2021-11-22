@@ -32,6 +32,7 @@
                     <country-flag :country= "result.original_language === 'en' ? 'gb' : result.original_language" size='big'/>
 
                     <font-awesome-icon :icon="['fas', 'star']" />
+                    <font-awesome-icon :icon="['far', 'star']" />
 
                     <p>{{Math.ceil(result.vote_average/2)}}</p>
 
@@ -55,6 +56,8 @@
                     <country-flag country='result.original_language' size='big'/>
 
                     <font-awesome-icon :icon="['fas', 'star']" />
+                    <font-awesome-icon :icon="['far', 'star']" />
+
 
                     <p>{{Math.ceil(result.vote_average/2)}}</p>
 
