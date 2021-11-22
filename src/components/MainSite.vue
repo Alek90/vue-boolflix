@@ -31,6 +31,8 @@
 
                     <img :src="flagUrl + result.original_language + '.png'" :alt="result.original_language">
 
+                    <country-flag :country= 'result.original_language' size='big'/>
+
                     <p>{{Math.ceil(result.vote_average/2)}}</p>
 
                     <img :src="posterUrl + result.poster_path" alt="">
@@ -50,7 +52,9 @@
 
                     <p>{{result.original_name}}</p>
 
-                    <img :src="flagUrl + result.original_language + '/codes.json'" :alt="result.origin_language">
+                    <img :src="flagUrl + result.original_language + '.png'" :alt="result.origin_language">
+
+                    <country-flag country='result.original_language' size='big'/>
 
                     <p>{{Math.ceil(result.vote_average/2)}}</p>
 
