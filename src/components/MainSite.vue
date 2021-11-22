@@ -29,9 +29,7 @@
 
                     <p>{{result.original_title}}</p>
 
-                    <img :src="flagUrl + result.original_language + '.png'" :alt="result.original_language">
-
-                    <country-flag :country= 'result.original_language' size='big'/>
+                    <country-flag :country= "result.original_language === 'en' ? 'gb' : result.original_language" size='big'/>
 
                     <p>{{Math.ceil(result.vote_average/2)}}</p>
 
@@ -51,8 +49,6 @@
                     <h3>{{result.name}}</h3>
 
                     <p>{{result.original_name}}</p>
-
-                    <img :src="flagUrl + result.original_language + '.png'" :alt="result.origin_language">
 
                     <country-flag country='result.original_language' size='big'/>
 
