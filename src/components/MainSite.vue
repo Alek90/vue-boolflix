@@ -31,10 +31,16 @@
 
                     <country-flag :country= "result.original_language === 'en' ? 'gb' : result.original_language" size='big'/>
 
-                    <font-awesome-icon :icon="['fas', 'star']" />
-                    <font-awesome-icon :icon="['far', 'star']" />
+                    <div class="vote">
 
-                    <p>{{Math.ceil(result.vote_average/2)}}</p>
+                        <p>{{Math.ceil(result.vote_average/2)}}</p>
+
+
+                        <font-awesome-icon v-for="(vote, index) in Math.ceil(result.vote_average/2)" :key="index" :icon="['fas', 'star']" />
+        
+                        <font-awesome-icon v-for="unvote in Math.abs(5 - Math.ceil(result.vote_average/2))" :key="unvote+'x'" :icon="['far', 'star']" />
+
+                    </div>
 
                     <img :src="posterUrl + result.poster_path" alt="">
 
@@ -55,11 +61,16 @@
 
                     <country-flag country='result.original_language' size='big'/>
 
-                    <font-awesome-icon :icon="['fas', 'star']" />
-                    <font-awesome-icon :icon="['far', 'star']" />
+                    <div class="vote">
+
+                        <p>{{Math.ceil(result.vote_average/2)}}</p>
 
 
-                    <p>{{Math.ceil(result.vote_average/2)}}</p>
+                        <font-awesome-icon v-for="(vote, index) in Math.ceil(result.vote_average/2)" :key="index" :icon="['fas', 'star']" />
+        
+                        <font-awesome-icon v-for="unvote in Math.sign(5 - Math.ceil(result.vote_average/2))" :key="unvote+'x'" :icon="['far', 'star']" />
+
+                    </div>
 
                     <img :src="posterUrl + result.poster_path" alt="">
 
@@ -100,8 +111,7 @@ export default {
 
             posterUrl: 'https://image.tmdb.org/t/p/w342',
 
-            flagUrl: 'https://flagcdn.com/16x12/'
-
+            flagUrl: 'https://flagcdn.com/16x12/',
         }
     },
 
