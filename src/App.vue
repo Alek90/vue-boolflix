@@ -36,7 +36,7 @@
 
                 <h3>{{result.title}}</h3>
 
-                <p>{{result.original_title}}</p>
+                <h4 class="">{{result.original_title}}</h4>
 
                 <country-flag :country= "result.original_language === 'en' ? 'gb' : result.original_language" size='big'/>
 
@@ -47,6 +47,8 @@
                   <font-awesome-icon class="star" v-for="unvote in Math.abs(5 - Math.ceil(result.vote_average/2))" :key="unvote+'x'" :icon="['far', 'star']" />
 
                 </div>
+
+                <p class="overview">{{result.overview}}</p>
 
               </div>
 
@@ -69,19 +71,26 @@
               
               <img :src="posterUrl + result.poster_path" alt="">
 
-              <h3>{{result.name}}</h3>
+              <div class="info">
 
-              <p>{{result.original_name}}</p>
+                <h3>{{result.name}}</h3>
 
-              <country-flag country='result.original_language' size='big'/>
+                <h4>{{result.original_name}}</h4>
 
-              <div class="vote">
+                <country-flag country='result.original_language' size='big'/>
 
-                <font-awesome-icon v-for="(vote, index) in Math.ceil(result.vote_average/2)" :key="index" :icon="['fas', 'star']" />
-          
-                <font-awesome-icon v-for="unvote in Math.sign(5 - Math.ceil(result.vote_average/2))" :key="unvote+'x'" :icon="['far', 'star']" />
+                <div class="vote">
+
+                  <font-awesome-icon class="star" v-for="(vote, index) in Math.ceil(result.vote_average/2)" :key="index" :icon="['fas', 'star']" />
+            
+                  <font-awesome-icon class="star" v-for="unvote in Math.abs(5 - Math.ceil(result.vote_average/2))" :key="unvote+'x'" :icon="['far', 'star']" />
+
+                </div>
+
+                <p class="overview">{{result.overview}}</p>
 
               </div>
+
 
             </div>
 
@@ -183,17 +192,26 @@ export default {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  background-color: rgb(20, 20, 20);
 }
 
 #app{
-  background-color: rgb(20, 20, 20);
   width: 100%;
 }
 
 //Utility
 
+h1, h3, h4, p, span, img, .vote{
+  background-color: black;
+}
+
 .flex{
   display: flex;
+}
+
+h2{
+  text-align: center;
+  margin: 75px 0 35px;
 }
 
 .container{
@@ -214,16 +232,27 @@ export default {
     }
     
     .info{
+      width: 100%;
+      height: 100%;
+      padding: 25px;
+      line-height: 1.5rem;
       display: block;
+      background-color: black;
+
+      h4{
+        width: 100%;
+        margin: 15px 0 35px;
+      }
+
+      .overview{
+        width: 100%;
+        height: 40%;
+        overflow-y: auto;
+      }
+
     }
   } 
 
-}
-
-.film img{
-  width: 100%;
-  height: 100%;
-  display: block;
 }
 
 
@@ -244,9 +273,13 @@ h1{
 input{
   line-height: 1.5rem;
   padding: 0 13px;
+  background-color: white;
   border: none;
   border-radius: 10px;
-  background-color: rgb(20, 20, 20);
+
+  &:focus-visible{
+    outline: none;
+  }
 }
 
 .search_start{
@@ -266,10 +299,15 @@ main{
   color: yellow;
 }
 
+img{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .info{
   display: none;
 }
-
 
 
 </style>
