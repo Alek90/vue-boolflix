@@ -15,6 +15,9 @@
       </div>
 
     </header>
+    <!-- /header -->
+
+
 
     <main id="site_main">
        
@@ -38,7 +41,13 @@
 
                 <h4 class="">{{result.original_title}}</h4>
 
-                <country-flag :country= "result.original_language === 'en' ? 'gb' : result.original_language" size='big'/>
+                <span class="language" v-if="viewFlag(result.original_language)">
+                
+                  <country-flag :country= "result.original_language === 'en' ? 'gb' : result.original_language" size='big'/>
+
+                </span>
+                
+                <p v-else>{{result.original_language}}</p>
 
                 <div class="vote">
 
@@ -77,7 +86,13 @@
 
                 <h4>{{result.original_name}}</h4>
 
-                <country-flag country='result.original_language' size='big'/>
+                <span class="language" v-if="viewFlag(result.original_language)">
+                
+                  <country-flag :country= "result.original_language === 'en' ? 'gb' : result.original_language" size='big'/>
+
+                </span>
+                
+                <p v-else>{{result.original_language}}</p>
 
                 <div class="vote">
 
@@ -96,40 +111,21 @@
 
           </div>
 
-
         </div>
 
-        </div>
+      </div>
 
     </main>
+    <!-- /main -->
     
-    <!-- <HeaderSite 
-    :titleRequired="searchTitle" 
-    :apiRequiredMovies="apiMovie"  
-    :apiRequiredTvShow="seriesMovie" 
-    @search="callApi()" 
-    /> -->
-    <!-- <MainSite :apiRequiredMovies="apiMovie"  :apiRequiredTvShow="seriesMovie"  :foundMovies="resultsFoundMovies"  :foundTvShow="resultsFoundTvShow" /> -->
-
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 
-//import HeaderSite from './components/HeaderSite.vue'
-//import MainSite from './components/MainSite.vue'
-
-
 export default {
   name: 'App',
-
-  /* components: {
-
-    HeaderSite,
-    //MainSite
-
-  }, */
 
   data() {
     return {
@@ -151,6 +147,8 @@ export default {
       posterUrl: 'https://image.tmdb.org/t/p/w342',
 
       flagUrl: 'https://flagcdn.com/16x12/',
+
+      flag: ["it", "fr", "de", "es", "en", "nl", "fi", "no"]
     }
   },
 
@@ -179,8 +177,14 @@ export default {
         console.log(response.data.results);
         this.resultsFoundTvShow = response.data.results
       });
+      
 
     },
+
+    viewFlag(isoCode) {
+      return this.flag.includes(isoCode)
+    },
+
 
   },
 }
@@ -268,6 +272,10 @@ header{
 
 h1{
   color: rgb(229, 9, 20);
+}
+
+.search_form{
+   background-color: black;
 }
 
 input{
