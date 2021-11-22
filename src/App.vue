@@ -1,18 +1,16 @@
 <template>
   <div id="app">
 
-    <header id="site_header">
+    <header class="flex" id="site_header">
 
       <h1>BOOLFLIX</h1>
 
       <!-- componente di ricerca -->
-      <div class="search">
+      <div class="search_form">
 
         <input @keyup="createApi(titleRequired)" v-model="titleRequired" type="text" placeholder="Titolo">
 
-        <button @click="callApi()">
-          Cerca
-        </button>
+        <font-awesome-icon @click="callApi()" :icon="['fas', 'search']" class="search_start" />
 
       </div>
 
@@ -171,5 +169,50 @@ export default {
 </script>
 
 <style lang="scss">
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#app{
+  background-color: rgb(20, 20, 20);
+}
+
+//Utility
+
+.flex{
+  display: flex;
+}
+
+
+//header
+
+header{
+  height: 70px;
+  padding: 0 35px;
+  background-color: black;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1{
+  color: rgb(229, 9, 20);
+}
+
+input{
+  line-height: 1.5rem;
+  padding: 0 13px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(20, 20, 20);
+}
+
+.search_start{
+  font-size: 1.2rem;
+  color: white;
+  margin: 0 15px;
+}
 
 </style>
