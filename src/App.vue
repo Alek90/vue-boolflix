@@ -1,8 +1,99 @@
 <template>
   <div id="app">
+
+    <header id="site_header">
+
+      <h1>BOOLFLIX</h1>
+
+      <!-- componente di ricerca -->
+      <div class="search">
+
+        <input @keyup="createApi(titleRequired)" v-model="titleRequired" type="text" placeholder="Titolo">
+
+        <button @click="callApi()">
+          Cerca
+        </button>
+
+      </div>
+
+    </header>
+
+    <main id="site_main">
+       
+      <!-- contenuto principale del #site_main -->
+      <div class="results_found">
+
+        <!-- film trovati -->
+        <div class="films_found">   
+
+          <h2>FILM</h2>
+              
+          <div v-for="result in resultsFoundMovies" :key="result.id" class="film">
+
+            <h3>{{result.title}}</h3>
+
+            <p>{{result.original_title}}</p>
+
+            <country-flag :country= "result.original_language === 'en' ? 'gb' : result.original_language" size='big'/>
+
+            <div class="vote">
+
+              <p>{{Math.ceil(result.vote_average/2)}}</p>
+
+
+              <font-awesome-icon v-for="(vote, index) in Math.ceil(result.vote_average/2)" :key="index" :icon="['fas', 'star']" />
+        
+              <font-awesome-icon v-for="unvote in Math.abs(5 - Math.ceil(result.vote_average/2))" :key="unvote+'x'" :icon="['far', 'star']" />
+
+            </div>
+
+            <img :src="posterUrl + result.poster_path" alt="">
+
+          </div>
+
+        </div>
+
+        <!-- serie tv trovate -->
+        <div class="tv_found">
+
+          <h2>TELEFILM</h2>
+
+          <div v-for="result in resultsFoundTvShow" :key="result.id" class="tvshow">
+
+            <h3>{{result.name}}</h3>
+
+            <p>{{result.original_name}}</p>
+
+            <country-flag country='result.original_language' size='big'/>
+
+            <div class="vote">
+
+              <p>{{Math.ceil(result.vote_average/2)}}</p>
+
+
+              <font-awesome-icon v-for="(vote, index) in Math.ceil(result.vote_average/2)" :key="index" :icon="['fas', 'star']" />
+        
+              <font-awesome-icon v-for="unvote in Math.sign(5 - Math.ceil(result.vote_average/2))" :key="unvote+'x'" :icon="['far', 'star']" />
+
+            </div>
+
+            <img :src="posterUrl + result.poster_path" alt="">
+
+          </div>
+
+        </div>
+
+        </div>
+
+    </main>
     
-    <HeaderSite :titleRequired="searchTitle" @search="callApi" />
-    <MainSite :apiRequiredMovies="apiMovie"  :apiRequiredTvShow="seriesMovie"  :foundMovies="resultsFoundMovies"  :foundTvShow="resultsFoundTvShow" />
+    <!-- <HeaderSite 
+    :titleRequired="searchTitle" 
+    :apiRequiredMovies="apiMovie"  
+    :apiRequiredTvShow="seriesMovie" 
+    @search="callApi()" 
+    /> -->
+    <!-- <MainSite :apiRequiredMovies="apiMovie"  :apiRequiredTvShow="seriesMovie"  :foundMovies="resultsFoundMovies"  :foundTvShow="resultsFoundTvShow" /> -->
 
   </div>
 </template>
@@ -10,47 +101,53 @@
 <script>
 import axios from 'axios';
 
-import HeaderSite from './components/HeaderSite.vue'
-import MainSite from './components/MainSite.vue'
+//import HeaderSite from './components/HeaderSite.vue'
+//import MainSite from './components/MainSite.vue'
 
 
 export default {
   name: 'App',
 
-  components: {
+  /* components: {
 
     HeaderSite,
-    MainSite
+    //MainSite
 
-  },
+  }, */
 
   data() {
     return {
 
-      searchTitle: '',
+      titleRequired: '',
 
       baseApiMovies: 'https://api.themoviedb.org/3/search/movie?api_key=3d29c9625fadd02d13b86c0f4b58f8b7&language=it-IT&page=1&include_adult=false&query=',
 
       baseApiTvShow: 'https://api.themoviedb.org/3/search/tv?api_key=3d29c9625fadd02d13b86c0f4b58f8b7&language=it-IT&page=1&include_adult=false&query=',
 
-      apiMovie: this.baseApiMovies + this.searchTitle,
+      apiMovie: '',
 
-      seriesMovie: this.baseApiTvShow + this.searchTitle,
+      seriesMovie: '',
 
       resultsFoundMovies: '',
     
       resultsFoundTvShow: '',
+
+      posterUrl: 'https://image.tmdb.org/t/p/w342',
+
+      flagUrl: 'https://flagcdn.com/16x12/',
     }
   },
 
-  methods: {
 
-    /* createAPI(required) {
+
+  methods: {
+    /* creazione dell'API in apiRequiredMovies */
+    createApi(required) {
       this.apiMovie = this.baseApiMovies + required;
       this.seriesMovie = this.baseApiTvShow + required;
       // console.log(this.apiRequiredMovies); 
       // console.log(this.apiRequiredTvShow);
-    }, */
+    },
 
     /* chiamata dell'API */
     callApi () {
@@ -68,7 +165,8 @@ export default {
       });
 
     },
-  }
+
+  },
 }
 </script>
 
