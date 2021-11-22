@@ -8,7 +8,7 @@
 
             <input v-model="titleRequired" type="text" placeholder="Titolo">
 
-            <button @click="callAPI()">
+            <button @click="$emit('search', titleRequired)">
             Cerca
             </button>
 
@@ -24,6 +24,8 @@ export default {
 
     data() {
         return {
+
+            titleRequired: ''
 
         }
     },

@@ -73,29 +73,34 @@
 
 
 <script>
-import axios from 'axios';
-//import  hasFlag  from  'country-flag-icons'
+//import axios from 'axios';
 
 export default {
     name: 'MaineSite',
+
+    props: {
+
+        foundMovies: Object,
+
+        foundTvShow: Object,
+
+    },
 
     data() {
 
         return{
 
-            titleRequired: '',
+            //baseApiMovies: 'https://api.themoviedb.org/3/search/movie?api_key=3d29c9625fadd02d13b86c0f4b58f8b7&language=it-IT&page=1&include_adult=false&query=',
 
-            baseApiMovies: 'https://api.themoviedb.org/3/search/movie?api_key=3d29c9625fadd02d13b86c0f4b58f8b7&language=it-IT&page=1&include_adult=false&query=',
+            //apiRequiredMovies: '',
 
-            apiRequiredMovies: '',
+            //resultsFoundMovies: '',
 
-            resultsFoundMovies: '',
+            //baseApiTvShow: 'https://api.themoviedb.org/3/search/tv?api_key=3d29c9625fadd02d13b86c0f4b58f8b7&language=it-IT&page=1&include_adult=false&query=',
 
-            baseApiTvShow: 'https://api.themoviedb.org/3/search/tv?api_key=3d29c9625fadd02d13b86c0f4b58f8b7&language=it-IT&page=1&include_adult=false&query=',
+            //apiRequiredTvShow: '',
 
-            apiRequiredTvShow: '',
-
-            resultsFoundTvShow: '',
+            //resultsFoundTvShow: '',
 
             posterUrl: 'https://image.tmdb.org/t/p/w342',
 
@@ -106,15 +111,15 @@ export default {
     methods:{
 
     /* creazione dell'API in apiRequiredMovies */
-    createAPI(required) {
+    /* createAPI(required) {
       this.apiRequiredMovies = this.baseApiMovies + required;
       this.apiRequiredTvShow = this.baseApiTvShow + required;
       // console.log(this.apiRequiredMovies); 
       // console.log(this.apiRequiredTvShow);
-    },
+    }, */
 
     /* chiamata dell'API */
-    callAPI () {
+    /* callApi () {
       axios
       .get(this.apiRequiredMovies)
       .then((response) => {
@@ -128,9 +133,7 @@ export default {
         this.resultsFoundTvShow = response.data.results
       });
 
-    },
-
-
+    }, */
 
   }
 
