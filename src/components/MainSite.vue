@@ -1,18 +1,6 @@
 <template>
     <main id="site_main">
- 
-        <!-- componente di ricerca -->
-        <div class="search">
-
-            <input @keyup="createAPI(titleRequired)" v-model="titleRequired" type="text" placeholder="Titolo">
-
-            <button @click="callAPI()">
-            Cerca
-            </button>
-
-        </div>
-
-
+       
         <!-- contenuto principale del #site_main -->
         <div class="results_found">
 
