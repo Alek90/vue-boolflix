@@ -95,7 +95,7 @@
 
               </div>
               
-              <div if-else class="poster_null">
+              <div v-else class="poster_null">
 
                 <h3>{{result.name}}</h3>
 
@@ -254,7 +254,7 @@ h2{
 
   &:hover{
     
-    img{
+    .poster, .poster_null{
       display: none;
     }
     
@@ -326,15 +326,34 @@ main{
   color: white;
 }
 
+.poster_null{
+  width: 100%;
+  height: 100%;
+  line-height: 1.5rem;
+  padding: 20px 25px;
+  background-image: url('https://banner2.cleanpng.com/20190219/ue/kisspng-photographic-film-westchester-film-festival-otherm-classical-music-mayhem-music-and-myths-and-book-5c6cb0e9c89a56.7139856315506270498217.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  h3{
+    text-decoration: underline;
+    color: black;
+    background-color: transparent;
+  }
+
+}
+
 .star{
   color: yellow;
 }
 
-img{
+.poster, .poster img{
   width: 100%;
   height: 100%;
   display: block;
 }
+
 
 .info{
   display: none;
