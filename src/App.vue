@@ -8,7 +8,7 @@
       <!-- componente di ricerca -->
       <div class="search_form">
 
-        <input @keyup="createApi(titleRequired)" v-model="titleRequired" type="text" placeholder="Titolo">
+        <input @keyup="createApi(titleRequired)" v-model="titleRequired" type="text" placeholder="Title" value="Title">
 
         <font-awesome-icon @click="callApi()" :icon="['fas', 'search']" class="search_start" />
 
@@ -33,7 +33,18 @@
 
             <div v-for="result in resultsFoundMovies" :key="result.id" class="film col_3">
             
-              <img :src="posterUrl + result.poster_path" alt=""> 
+              <div v-if="result.poster_path != null" class="poster">
+              
+                <img :src="posterUrl + result.poster_path" :alt="result.title"> 
+
+              </div>
+
+              <div v-else class="poster_null">
+
+                <h3>{{result.title}}</h3>
+
+              </div>
+              
 
               <div class="info">
 
@@ -77,8 +88,18 @@
           <div class="container flex">
 
             <div v-for="result in resultsFoundTvShow" :key="result.id" class="tvshow col_3">
+
+              <div v-if="result.poster_path != null" class="poster">
+
+                <img :src="posterUrl + result.poster_path" :alt="result.name">
+
+              </div>
               
-              <img :src="posterUrl + result.poster_path" alt="">
+              <div if-else class="poster_null">
+
+                <h3>{{result.name}}</h3>
+
+              </div>
 
               <div class="info">
 
@@ -98,7 +119,7 @@
 
                   <font-awesome-icon class="star" v-for="(vote, index) in Math.ceil(result.vote_average/2)" :key="index" :icon="['fas', 'star']" />
             
-                  <font-awesome-icon class="star" v-for="unvote in Math.abs(5 - Math.ceil(result.vote_average/2))" :key="unvote+'x'" :icon="['far', 'star']" />
+                  <font-awesome-icon class="star" v-for="(unvote, index) in Math.abs(5 - Math.ceil(result.vote_average/2))" :key="index+'x'" :icon="['far', 'star']" />
 
                 </div>
 
@@ -146,6 +167,8 @@ export default {
 
       posterUrl: 'https://image.tmdb.org/t/p/w342',
 
+      poster: '',
+
       flagUrl: 'https://flagcdn.com/16x12/',
 
       flag: ["it", "fr", "de", "es", "en", "nl", "fi", "no"]
@@ -177,6 +200,7 @@ export default {
         console.log(response.data.results);
         this.resultsFoundTvShow = response.data.results
       });
+      this.titleRequired = '';
       
 
     },
@@ -184,7 +208,6 @@ export default {
     viewFlag(isoCode) {
       return this.flag.includes(isoCode)
     },
-
 
   },
 }
